@@ -1,9 +1,8 @@
-import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Header from "./components/Header/Header";
+import Home from "./pages/Home/Home";
 
 function App() {
-  return <Header />;
+  return <Home />;
 }
 
 export default App;
