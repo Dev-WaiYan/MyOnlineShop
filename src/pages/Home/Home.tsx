@@ -4,10 +4,12 @@ import Header from "../../components/Header/Header";
 import ItemComponent from "../../components/Item/Item";
 import mock_items from "../../mocks/item";
 import Item from "../../models/Item";
+import ItemDetails from "../ItemDetails/ItemDetails";
 
 function Home() {
   // Original Items
   const [items, setItems] = useState<Item[]>([]);
+  const [isShowItemDetails, setIsShowItemDetails] = useState<boolean>(false);
 
   // Working Items
   const [workingItems, setWorkingItems] = useState<Item[]>([]);
@@ -24,7 +26,6 @@ function Home() {
   return (
     <>
       <Header items={items} setWorkingItems={setWorkingItems} />
-
       <Container>
         <Row>
           {workingItems.length > 0 ? (
@@ -35,6 +36,7 @@ function Home() {
                     title={item.title}
                     price={`Price ${item.price} - ${item.currency}`}
                     coverImg={item.coverImg}
+                    setIsShowItemDetails={setIsShowItemDetails}
                   />
                 </Col>
               ))}
@@ -46,6 +48,14 @@ function Home() {
           )}
         </Row>
       </Container>
+      {/* Showing item details */}
+      {isShowItemDetails && (
+        <ItemDetails
+          isShowItemDetails={isShowItemDetails}
+          setIsShowItemDetails={setIsShowItemDetails}
+        />
+      )}
+      {/* End showing item details */}
     </>
   );
 }
